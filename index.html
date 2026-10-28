@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bonjour Quest — French Flashcards</title>
+<style>
+:root{--bg:#101329;--panel:#1b2040;--text:#f7f5ff;--muted:#aab2d7;--pink:#ff6fba;--mint:#71f0c5;--yellow:#ffd66b;--blue:#8c9bff}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 15% 10%,#30235d 0,transparent 38%),radial-gradient(circle at 85% 85%,#173b52 0,transparent 40%),var(--bg);font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:var(--text);min-height:100vh}.app{max-width:1000px;margin:auto;padding:28px 22px 60px}header{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.brand{font-weight:900;font-size:25px;letter-spacing:-1px}.brand span{color:var(--mint)}.pill{border:1px solid #59618a;border-radius:30px;padding:9px 14px;color:var(--muted);font-size:13px}h1{font-size:clamp(30px,5vw,52px);margin:42px 0 7px;letter-spacing:-2px}h1 em{font-style:normal;color:var(--pink)}.subtitle{color:var(--muted);margin:0 0 27px}.toolbar{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px}button,select{font:inherit}button{cursor:pointer;border:0;font-weight:750}.chip{background:#252b50;color:#d6dcff;border:1px solid #454d7a;padding:12px 17px;border-radius:14px}.chip.active{background:var(--blue);color:#101329;border-color:var(--blue)}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:0 0 18px}.stat{background:#1a1f3b;border:1px solid #333b68;border-radius:16px;padding:14px 17px}.stat b{font-size:24px;display:block}.stat small{color:var(--muted)}.progress{height:9px;background:#303756;border-radius:20px;overflow:hidden;margin-bottom:23px}.progress>div{height:100%;background:linear-gradient(90deg,var(--mint),var(--blue));width:0;transition:width .25s}.scene{perspective:1200px}.flashcard{position:relative;width:100%;height:320px;transform-style:preserve-3d;transition:transform .55s;cursor:pointer;outline:none}.flashcard.flipped{transform:rotateY(180deg)}.face{position:absolute;inset:0;backface-visibility:hidden;border-radius:28px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center;border:1px solid #7d6cb6;background:linear-gradient(140deg,#38316d,#242d58);box-shadow:0 25px 65px #080b2090}.face.back{transform:rotateY(180deg);background:linear-gradient(140deg,#175c64,#243e66);border-color:#58c4bd}.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:3px;color:#c9c6ef;font-weight:800}.word{font-size:clamp(42px,7vw,72px);font-weight:900;letter-spacing:-2px;margin:24px 0 10px;overflow-wrap:anywhere}.hint{font-size:14px;color:#c6c9e4}.controls{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin:22px 0}.action{border-radius:15px;padding:15px 20px;color:#11172d}.skip{background:#d3d9ff}.know{background:var(--mint)}.again{background:var(--pink)}.secondary{background:#292e52;color:white;border:1px solid #505980}.footer{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:13px}.footer button{color:var(--yellow);background:transparent;border:0;padding:0}.note{margin-top:26px;color:#b9c2e3;background:#191e3a;border:1px dashed #4b557c;border-radius:16px;padding:15px;font-size:14px}.spark{color:var(--yellow)}.addpanel{margin:24px 0;background:#1b2040;border:1px solid #46507d;border-radius:20px;padding:20px}.addpanel h2{margin:0 0 8px}.addpanel p{color:var(--muted);font-size:14px}.fields{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}.fields input{width:100%;background:#10152f;border:1px solid #59618a;border-radius:12px;padding:13px;color:white;font:inherit}.fields label{font-size:13px;color:#cbd4f5}.fields label input{margin-top:6px}.smallbtn{background:#30395e;color:#fff;border:1px solid #57638f;border-radius:12px;padding:10px 13px}.wordlist{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.worditem{background:#292f55;border-radius:12px;padding:8px 11px;font-size:13px}.worditem button{background:transparent;color:#ff98c7;margin-left:9px}.speaker{background:#fff2;color:#fff;border:1px solid #fff5;border-radius:50px;padding:10px 16px;margin-top:8px}.message{color:var(--mint)!important;min-height:20px}@media(max-width:550px){.app{padding:20px 14px}.flashcard{height:280px}.stats{gap:7px}.stat{padding:11px}.stat b{font-size:20px}.action{padding:13px 15px}}
+</style>
+</head>
+<body><main class="app"><header><div class="brand">✦ bonjour<span>quest</span></div><div class="pill">🇫🇷 LEVEL 01 · VOCABULARY</div></header><h1>Make French <em>stick.</em> <span class="spark">✦</span></h1><p class="subtitle">Flip cards. Collect wins. Learn a little every day.</p><div class="toolbar"><button class="chip active" data-deck="all">✨ All words</button><button class="chip" data-deck="days">📅 Days</button><button class="chip" data-deck="months">🌙 Months</button><button class="chip" data-deck="mine">⭐ My words</button><button class="chip" id="shuffle">🔀 Shuffle</button></div><div class="stats"><div class="stat"><b id="position">1 / 19</b><small>Card</small></div><div class="stat"><b id="known">0</b><small>Mastered</small></div><div class="stat"><b id="streak">0 🔥</b><small>Streak</small></div></div><div class="progress"><div id="bar"></div></div><div class="scene"><div class="flashcard" id="card" role="button" tabindex="0" aria-label="Flip flashcard"><div class="face front"><div class="eyebrow">🇫🇷 French · Tap to reveal</div><div class="word" id="front">lundi</div><div class="hint">What does this mean in English?</div><button class="speaker" id="speak" type="button" aria-label="Hear French pronunciation">🔊 Hear pronunciation</button></div><div class="face back"><div class="eyebrow">✨ English meaning</div><div class="word" id="back">Monday</div><div class="hint">Tap again to see French</div></div></div></div><div class="controls"><button class="action again" id="again">↻ Practice again</button><button class="action skip" id="next">Next →</button><button class="action know" id="know">✓ Got it! +10 XP</button></div><div class="footer"><span>Space = flip · ← / → = navigate · 1 = practice · 2 = mastered</span><button id="reset">Reset progress</button></div><section class="addpanel"><h2>✍️ Your word collection</h2>
+<p>Add new vocabulary right here. Your words stay saved in this browser when you close the page.</p>
+<form id="wordform"><div class="fields">
+<label>French word or phrase<input id="newfr" required maxlength="120" placeholder="bonjour" autocomplete="off"></label>
+<label>English meaning<input id="newen" required maxlength="120" placeholder="hello" autocomplete="off"></label>
+</div><button class="action know" type="submit">＋ Add flashcard</button></form>
+<p id="wordmessage" class="message" role="status"></p>
+<h3>My words (<span id="customcount">0</span>)</h3><div id="wordlist" class="wordlist"></div>
+<div class="toolbar" style="margin-top:18px"><button class="smallbtn" id="export" type="button">⬇ Export backup</button>
+<button class="smallbtn" id="importbtn" type="button">⬆ Import backup</button>
+<input id="importfile" type="file" accept=".json,application/json" hidden></div>
+<p>Backups include your added words and mastered progress. Keep a copy if you change laptops or browsers.</p></section>
+<div class="note">💡 <b>Make it yours:</b> Use the form above to add words without editing code. Tap 🔊 to hear French pronunciation. Speech uses your browser’s installed French voice, and may vary by device.</div></main><script>
+// ADD YOUR OWN WORDS HERE: { fr: 'bonjour', en: 'hello', category: 'greetings' }
+const vocabulary = [
+{fr:'lundi',en:'Monday',category:'days'},{fr:'mardi',en:'Tuesday',category:'days'},{fr:'mercredi',en:'Wednesday',category:'days'},{fr:'jeudi',en:'Thursday',category:'days'},{fr:'vendredi',en:'Friday',category:'days'},{fr:'samedi',en:'Saturday',category:'days'},{fr:'dimanche',en:'Sunday',category:'days'},
+{fr:'janvier',en:'January',category:'months'},{fr:'février',en:'February',category:'months'},{fr:'mars',en:'March',category:'months'},{fr:'avril',en:'April',category:'months'},{fr:'mai',en:'May',category:'months'},{fr:'juin',en:'June',category:'months'},{fr:'juillet',en:'July',category:'months'},{fr:'août',en:'August',category:'months'},{fr:'septembre',en:'September',category:'months'},{fr:'octobre',en:'October',category:'months'},{fr:'novembre',en:'November',category:'months'},{fr:'décembre',en:'December',category:'months'}];
+const CUSTOM_KEY='bonjour-custom-words-v2';
+function readCustom(){try{const a=JSON.parse(localStorage.getItem(CUSTOM_KEY)||'[]');return Array.isArray(a)?a.filter(w=>w&&typeof w.fr==='string'&&typeof w.en==='string').map(w=>({fr:w.fr,en:w.en,category:'mine'})):[]}catch{return []}}
+let customWords=readCustom();
+function allWords(){return [...vocabulary,...customWords]}
+const $=id=>document.getElementById(id);let deck='all',order=[],index=0,streak=0;let mastered=new Set(JSON.parse(localStorage.getItem('bonjour-mastered')||'[]'));const key=w=>w.category+':'+w.fr;
+function load(shuffle=false){order=allWords().filter(w=>deck==='all'||w.category===deck);if(shuffle)order.sort(()=>Math.random()-.5);index=0;render()}
+function render(){const w=order[index];if(!w){$('card').style.visibility='hidden';$('position').textContent='0 / 0';$('known').textContent='0';$('bar').style.width='0%';$('know').disabled=true;return}$('card').style.visibility='visible';$('know').disabled=false;$('card').classList.remove('flipped');$('front').textContent=w.fr;$('back').textContent=w.en;$('position').textContent=`${index+1} / ${order.length}`;$('known').textContent=order.filter(x=>mastered.has(key(x))).length;$('streak').textContent=streak+' 🔥';$('bar').style.width=(100*order.filter(x=>mastered.has(key(x))).length/order.length)+'%';$('know').textContent=mastered.has(key(w))?'✓ Mastered · Next':'✓ Got it! +10 XP'}
+function next(delta=1){if(!order.length)return;index=(index+delta+order.length)%order.length;render()}function mark(yes){if(!order.length)return;const w=order[index];if(yes){mastered.add(key(w));streak++}else{mastered.delete(key(w));streak=0}localStorage.setItem('bonjour-mastered',JSON.stringify([...mastered]));next()}
+function speakFrench(){
+  if(!order.length||!('speechSynthesis' in window)){ $('wordmessage').textContent='Speech is not supported by this browser.';return }
+  const synth=window.speechSynthesis;
+  synth.cancel();
+  const utterance=new SpeechSynthesisUtterance(order[index].fr);
+  utterance.lang='fr-FR';utterance.rate=0.82;
+  const voices=synth.getVoices();
+  const french=voices.find(v=>v.lang.toLowerCase()==='fr-fr')||voices.find(v=>v.lang.toLowerCase().startsWith('fr'));
+  if(french)utterance.voice=french;
+  synth.speak(utterance);
+}
+$('speak').onclick=e=>{e.stopPropagation();speakFrench()};
+function saveCustom(){localStorage.setItem(CUSTOM_KEY,JSON.stringify(customWords));renderCustom();load()}
+function renderCustom(){
+  $('customcount').textContent=customWords.length;
+  const list=$('wordlist');list.replaceChildren();
+  if(!customWords.length){list.textContent='No words added yet — add your first one!';return}
+  customWords.forEach((w,i)=>{
+    const item=document.createElement('span');item.className='worditem';
+    item.append(document.createTextNode(w.fr+' — '+w.en));
+    const del=document.createElement('button');del.textContent='✕';del.type='button';del.setAttribute('aria-label','Delete '+w.fr);
+    del.onclick=()=>{if(confirm('Delete '+w.fr+'?')){mastered.delete(key(w));localStorage.setItem('bonjour-mastered',JSON.stringify([...mastered]));customWords.splice(i,1);saveCustom()}};
+    item.append(del);list.append(item);
+  });
+}
+$('wordform').onsubmit=e=>{
+  e.preventDefault();const fr=$('newfr').value.trim(),en=$('newen').value.trim();
+  if(!fr||!en)return;
+  if(allWords().some(w=>w.fr.toLocaleLowerCase('fr')===fr.toLocaleLowerCase('fr'))){$('wordmessage').textContent='That French word is already in your collection.';return}
+  customWords.push({fr,en,category:'mine'});saveCustom();$('wordform').reset();
+  $('wordmessage').textContent='✨ Added '+fr+'! Saved automatically.';
+};
+$('export').onclick=()=>{
+ const data={version:1,words:customWords,mastered:[...mastered]};
+ const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+ const url=URL.createObjectURL(blob),a=document.createElement('a');
+ a.href=url;a.download='bonjour-quest-backup.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+};
+$('importbtn').onclick=()=>$('importfile').click();
+$('importfile').onchange=async e=>{
+ const file=e.target.files[0];if(!file)return;
+ try{
+  const data=JSON.parse(await file.text());
+  if(!Array.isArray(data.words)||!Array.isArray(data.mastered))throw Error('Invalid backup');
+  const incoming=data.words.filter(w=>w&&typeof w.fr==='string'&&typeof w.en==='string'&&w.fr.length<=120&&w.en.length<=120);
+  const existing=new Set(allWords().map(w=>w.fr.toLocaleLowerCase('fr')));
+  let added=0;
+  for(const w of incoming){if(!existing.has(w.fr.toLocaleLowerCase('fr'))){customWords.push({fr:w.fr,en:w.en,category:'mine'});existing.add(w.fr.toLocaleLowerCase('fr'));added++}}
+  for(const k of data.mastered){if(typeof k==='string')mastered.add(k)}
+  localStorage.setItem('bonjour-mastered',JSON.stringify([...mastered]));
+  saveCustom();$('wordmessage').textContent='Backup imported! '+added+' new words added.';
+ }catch{$('wordmessage').textContent='Could not import: please choose a Bonjour Quest backup JSON file.'}
+ e.target.value='';
+};
+$('card').onclick=()=>$('card').classList.toggle('flipped');$('card').onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();$('card').click()}};$('next').onclick=()=>next();$('know').onclick=()=>mark(true);$('again').onclick=()=>mark(false);$('shuffle').onclick=()=>load(true);$('reset').onclick=()=>{if(confirm('Clear your mastered words?')){mastered.clear();streak=0;localStorage.removeItem('bonjour-mastered');render()}};document.querySelectorAll('[data-deck]').forEach(b=>b.onclick=()=>{deck=b.dataset.deck;document.querySelectorAll('[data-deck]').forEach(x=>x.classList.toggle('active',x===b));load()});document.addEventListener('keydown',e=>{if(['INPUT','TEXTAREA'].includes(document.activeElement.tagName))return;if(e.code==='Space'){e.preventDefault();$('card').click()}else if(e.key==='ArrowRight')next();else if(e.key==='ArrowLeft')next(-1);else if(e.key==='1')mark(false);else if(e.key==='2')mark(true)});renderCustom();load();
+</script></body></html>
